@@ -25,6 +25,9 @@ main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdarg.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h
 main.obj: ../basic_functions.h
 main.obj: ../LSM9DS1.h
+main.obj: ../LSM9DS1_Registers.h
+main.obj: ../LSM9DS1_Types.h
+main.obj: ../common.h
 main.obj: ../i2c.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/i2c.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_i2c.h
@@ -59,6 +62,9 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdarg.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h: 
 ../basic_functions.h: 
 ../LSM9DS1.h: 
+../LSM9DS1_Registers.h: 
+../LSM9DS1_Types.h: 
+../common.h: 
 ../i2c.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/i2c.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_i2c.h: 
