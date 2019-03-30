@@ -12,6 +12,9 @@
 *******************************************************************************/
 
 void UART_init(void);
-
+void button_init(void);
+void buttonDown();
+void buttonUp();
+void process_button();
 
 #endif /* BOARD_H_ */

@@ -36,23 +36,27 @@ void _printAttitude();
 /*******************************************************************************
 * Main Loop
 *******************************************************************************/
+extern int test;
 
 int main(void)
 {
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_6|GPIO_PIN_7);
 
 	UART_init();
 	Motor_init();
 	I2C_Init(I2C3_BASE, true);
 	LSM9DS1_init(&imu, &imu_config, &dev);
-
+	button_init();
 	while(1)
 	{
-	    LSM9DS1_step(&imu, &dev);
-		_printAccel(); // Print "A: ax, ay, az"
-		_printAttitude();
-		DriveMotor1(1, 0);
-		SysCtlDelay(1000000/50);
+//	    LSM9DS1_step(&imu, &dev);
+//		_printAccel(); // Print "A: ax, ay, az"
+//		_printAttitude();
+//		DriveMotor1(1, 0);
+//		SysCtlDelay(1000000/50);
+	    process_button();
 	}
 }
 
