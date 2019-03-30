@@ -5,6 +5,7 @@
  *
  * Written by Jim Lindblom @ SparkFun Electronics
  * Re-written in C by Richard Chen <ryc5@sfu.ca>
+ * Re-written for Tiva-C by Rick Lin <rick_lin@sfu.ca>
  *******************************************************************************
  *
  * Copyright Movit Technologies Inc., 2018
@@ -17,10 +18,6 @@
  * ========================================
  */
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "LSM9DS1_Registers.h"
-#include "LSM9DS1_Types.h"
 #include "LSM9DS1.h"
 
 /*******************************************************************************
@@ -29,6 +26,7 @@
 
 const float magSensitivity[4] = {0.00014, 0.00029, 0.00043, 0.00058};
 const uint8_t NUM_RETRIES = 200; // Arbitrarily set for now
+const float PI = 3.14159265358979323846;
 
 /*******************************************************************************
 * Global Variables
@@ -210,29 +208,16 @@ uint16_t LSM9DS1_init(imu_t* imu, const imu_config_t* config, dev_t* dev)
     return whoAmICombined;
 }
 
-void LSM9DS1_step(imu_t* imu, imu_t* imu_2, dev_t* dev)
+void LSM9DS1_step(imu_t* imu, dev_t* dev)
 {
-    const uint16_t NUM_SAMPLES = 250;
-
     /* Guard against any IMU error */
     if ((dev->status.imu1_error == IMU_NO_ERR || dev->status.imu1_error == IMU_M_INIT_ERR)
         && (dev->status.imu2_error == IMU_NO_ERR || dev->status.imu2_error == IMU_M_INIT_ERR)) {
-        /* Handle calibration requests */
-        if (dev->status.req_calibrate < CALIB_ARRAY_SIZE) {
-            LSM9DS1_calibratePosture(imu, imu_2, dev->status.req_calibrate, NUM_SAMPLES);
 
-            /* Set calibration status */
-            dev->status.calib_status |= (0x01 << dev->status.req_calibrate);
-
-            /* Clear calibration request */
-            dev->status.req_calibrate = CALIB_NONE;
-        }
         /* Read sensor data */
         LSM9DS1_readAccel(imu);
+        LSM9DS1_calcAttitude(imu, dev);
         dev->status.imu1_error = imu_error_flag;
-
-        LSM9DS1_readAccel(imu_2);
-        dev->status.imu2_error = imu_error_flag;
     }
 }
 
@@ -249,6 +234,16 @@ void LSM9DS1_sleep(imu_t* imu, imu_t* imu_2)
     /* Set mag to power down mode, default 0x03 */
     LSM9DS1_mWriteByte(imu, CTRL_REG3_M, 0x03);
     LSM9DS1_mWriteByte(imu_2, CTRL_REG3_M, 0x03);
+}
+
+void LSM9DS1_calcAttitude(imu_t* imu, dev_t* dev)
+{
+    dev->data.roll = atan2(imu->ay, imu->az);
+    dev->data.pitch = atan2(-imu->ax, sqrt(imu->ay * imu->ay + imu->az * imu->az));
+
+    // Convert everything from radians to degrees:
+    dev->data.pitch *= 180.0 / PI;
+    dev->data.roll  *= 180.0 / PI;
 }
 
 void LSM9DS1_initGyro(imu_t* imu)

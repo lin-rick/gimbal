@@ -7,7 +7,6 @@
 #include "global_include.h"
 #include "basic_functions.h"
 #include "LSM9DS1.h"
-#include <math.h>
 
 /*******************************************************************************
 * Global Variables
@@ -27,14 +26,12 @@ imu_config_t imu_config = {
     .low_power_mode = true
 };
 
-const float PI = 3.14159265358979323846;
-
 /*******************************************************************************
 * Function Definitions
 *******************************************************************************/
 
 void printAccel();
-void printAttitude(float ax, float ay, float az);
+void printAttitude();
 
 /*******************************************************************************
 * Main Loop
@@ -50,27 +47,21 @@ int main(void)
 
 	while(1)
 	{
+	    LSM9DS1_step(&imu, &dev);
 		printAccel(); // Print "A: ax, ay, az"
-
-		printAttitude(imu.ax, imu.ay, imu.az);
+		printAttitude();
 		SysCtlDelay(1000000);
 	}
 }
 
 void printAccel()
 {
-  // To read from the accelerometer, you must first call the
-  // readAccel() function. When this exits, it'll update the
-  // ax, ay, and az variables with the most current data.
-  LSM9DS1_readAccel(&imu);
-
   // Now we can use the ax, ay, and az variables as we please.
   // Either print them as raw ADC values, or calculated in g's.
   UARTprintf("A: ");
   UARTprintf("x:%5d ",imu.ax);
   UARTprintf("y:%5d ",imu.ay);
   UARTprintf("z:%5d ",imu.az);
-//  UARTprintf("\n");
 }
 
 
@@ -79,18 +70,11 @@ void printAccel()
 // http://cache.freescale.com/files/sensors/doc/app_note/AN3461.pdf?fpsp=1
 // Heading calculations taken from this app note:
 // http://www51.honeywell.com/aero/common/documents/myaerospacecatalog-documents/Defense_Brochures-documents/Magnetic__Literature_Application_notes-documents/AN203_Compass_Heading_Using_Magnetometers.pdf
-void printAttitude(float ax, float ay, float az)
+void printAttitude()
 {
-  float roll = atan2(ay, az);
-  float pitch = atan2(-ax, sqrt(ay * ay + az * az));
-
-  // Convert everything from radians to degrees:
-  pitch *= 180.0 / PI;
-  roll  *= 180.0 / PI;
-
   int16_t i16roll, i16pitch;
-  i16roll = roll;
-  i16pitch = pitch;
+  i16roll = dev.data.roll;
+  i16pitch = dev.data.pitch;
 
   UARTprintf("Pitch: %3d,",i16pitch);
   UARTprintf("Roll: %3d,",i16roll);

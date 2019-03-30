@@ -5,6 +5,7 @@
  *
  * Written by Jim Lindblom @ SparkFun Electronics
  * Re-written in C by Richard Chen <ryc5@sfu.ca>
+ * Re-written for Tiva-C by Rick Lin <rick_lin@sfu.ca>
  *******************************************************************************
  *
  * Copyright Movit Technologies Inc., 2018
@@ -22,6 +23,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <math.h>
 #include "LSM9DS1_Registers.h"
 #include "LSM9DS1_Types.h"
 #include "common.h"
@@ -101,7 +103,7 @@ uint16_t LSM9DS1_init(imu_t* imu, const imu_config_t* config, dev_t* dev);
  * @param dev Struct containing device information.
  * @return void.
  */
-void LSM9DS1_step(imu_t* imu, imu_t* imu_2, dev_t* dev);
+void LSM9DS1_step(imu_t* imu, dev_t* dev);
 
 /**
  * @brief LSM9DS1_sleep() puts both IMUs to sleep.
@@ -110,6 +112,14 @@ void LSM9DS1_step(imu_t* imu, imu_t* imu_2, dev_t* dev);
  * @return void.
  */
 void LSM9DS1_sleep(imu_t* imu, imu_t* imu_2);
+
+/**
+ * @brief LSM9DS1_calcAttitude() takes raw accelerometer readings and calculates pitch, roll.
+ * @param imu Struct containing device info for IMU1.
+ * @param dev Struct containing data fields for pitch, roll.
+ * @return void.
+ */
+void LSM9DS1_calcAttitude(imu_t* imu, dev_t* dev);
 
 /**
  * @brief LSM9DS1_calibratePosture() samples and averages both accelerometers
