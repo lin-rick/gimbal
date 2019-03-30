@@ -9,6 +9,7 @@ main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_type
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_stdint.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_stdint.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdbool.h
+main.obj: ../board.h
 main.obj: ../global_include.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h
@@ -23,7 +24,6 @@ main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/utils/uartstdio.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdarg.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h
-main.obj: ../basic_functions.h
 main.obj: ../LSM9DS1.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/math.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/_ti_config.h
@@ -46,6 +46,7 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_types.h:
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdbool.h: 
+../board.h: 
 ../global_include.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h: 
@@ -60,7 +61,6 @@ C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/uart.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/utils/uartstdio.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdarg.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h: 
-../basic_functions.h: 
 ../LSM9DS1.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/math.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/_ti_config.h: 

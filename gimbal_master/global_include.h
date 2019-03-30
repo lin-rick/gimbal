@@ -1,9 +1,6 @@
-/*
- * global_include.h
- *
- *  Created on: Oct 1, 2016
- *      Author: nghiajenius
- */
+/*******************************************************************************
+* Included headers
+*******************************************************************************/
 
 #ifndef GLOBAL_INCLUDE_H_
 #define GLOBAL_INCLUDE_H_
@@ -25,9 +22,6 @@
 #include "driverlib/uart.h"
 #include "utils/uartstdio.h"
 #include "driverlib/pin_map.h"
-
-//#include "i2c.h"
-
 
 
 #endif /* GLOBAL_INCLUDE_H_ */

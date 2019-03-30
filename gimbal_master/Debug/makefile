@@ -11,7 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./LSM9DS1.obj" \
-"./basic_functions.obj" \
+"./board.obj" \
 "./i2c.obj" \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
@@ -160,8 +160,8 @@ gimbal_master.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "LSM9DS1.obj" "basic_functions.obj" "i2c.obj" "main.obj" "tm4c123gh6pm_startup_ccs.obj" "uartstdio.obj" 
-	-$(RM) "LSM9DS1.d" "basic_functions.d" "i2c.d" "main.d" "tm4c123gh6pm_startup_ccs.d" "uartstdio.d" 
+	-$(RM) "LSM9DS1.obj" "board.obj" "i2c.obj" "main.obj" "tm4c123gh6pm_startup_ccs.obj" "uartstdio.obj" 
+	-$(RM) "LSM9DS1.d" "board.d" "i2c.d" "main.d" "tm4c123gh6pm_startup_ccs.d" "uartstdio.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

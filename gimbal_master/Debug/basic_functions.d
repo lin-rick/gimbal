@@ -1,8 +1,8 @@
 # FIXED
 
 basic_functions.obj: ../basic_functions.c
-basic_functions.obj: ../basic_functions.h
-basic_functions.obj: ../global_include.h
+basic_functions.obj: C:/Users/P50/CCSProjects/gimbal/gimbal_master/basic_functions.h
+basic_functions.obj: C:/Users/P50/CCSProjects/gimbal/gimbal_master/global_include.h
 basic_functions.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdint.h
 basic_functions.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/stdint.h
 basic_functions.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/cdefs.h
@@ -26,8 +26,8 @@ basic_functions.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/st
 basic_functions.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/pin_map.h
 
 ../basic_functions.c: 
-../basic_functions.h: 
-../global_include.h: 
+C:/Users/P50/CCSProjects/gimbal/gimbal_master/basic_functions.h: 
+C:/Users/P50/CCSProjects/gimbal/gimbal_master/global_include.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/cdefs.h: 

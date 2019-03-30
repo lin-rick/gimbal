@@ -6,17 +6,7 @@
  * Written by Jim Lindblom @ SparkFun Electronics
  * Re-written in C by Richard Chen <ryc5@sfu.ca>
  * Re-written for Tiva-C by Rick Lin <rick_lin@sfu.ca>
- *******************************************************************************
- *
- * Copyright Movit Technologies Inc., 2018
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF Movit Technologies Inc.
- *
- * ========================================
- */
+ *******************************************************************************/
 
 #include "LSM9DS1.h"
 

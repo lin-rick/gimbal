@@ -4,8 +4,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "global_include.h"
-#include "basic_functions.h"
+#include "board.h"
 #include "LSM9DS1.h"
 
 /*******************************************************************************
@@ -48,29 +47,25 @@ int main(void)
 	while(1)
 	{
 	    LSM9DS1_step(&imu, &dev);
-		printAccel(); // Print "A: ax, ay, az"
-		printAttitude();
+		_printAccel(); // Print "A: ax, ay, az"
+		_printAttitude();
 		SysCtlDelay(1000000);
 	}
 }
 
-void printAccel()
+/*******************************************************************************
+* Sub Functions
+*******************************************************************************/
+
+void _printAccel()
 {
-  // Now we can use the ax, ay, and az variables as we please.
-  // Either print them as raw ADC values, or calculated in g's.
   UARTprintf("A: ");
   UARTprintf("x:%5d ",imu.ax);
   UARTprintf("y:%5d ",imu.ay);
   UARTprintf("z:%5d ",imu.az);
 }
 
-
-// Calculate pitch, roll, and heading.
-// Pitch/roll calculations take from this app note:
-// http://cache.freescale.com/files/sensors/doc/app_note/AN3461.pdf?fpsp=1
-// Heading calculations taken from this app note:
-// http://www51.honeywell.com/aero/common/documents/myaerospacecatalog-documents/Defense_Brochures-documents/Magnetic__Literature_Application_notes-documents/AN203_Compass_Heading_Using_Magnetometers.pdf
-void printAttitude()
+void _printAttitude()
 {
   int16_t i16roll, i16pitch;
   i16roll = dev.data.roll;

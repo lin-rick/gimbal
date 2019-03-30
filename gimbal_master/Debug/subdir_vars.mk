@@ -13,7 +13,7 @@ C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib
 
 C_SRCS += \
 ../LSM9DS1.c \
-../basic_functions.c \
+../board.c \
 ../i2c.c \
 ../main.c \
 ../tm4c123gh6pm_startup_ccs.c \
@@ -21,7 +21,7 @@ C:/ti/TivaWare_C_Series-2.1.4.178/utils/uartstdio.c
 
 C_DEPS += \
 ./LSM9DS1.d \
-./basic_functions.d \
+./board.d \
 ./i2c.d \
 ./main.d \
 ./tm4c123gh6pm_startup_ccs.d \
@@ -29,7 +29,7 @@ C_DEPS += \
 
 OBJS += \
 ./LSM9DS1.obj \
-./basic_functions.obj \
+./board.obj \
 ./i2c.obj \
 ./main.obj \
 ./tm4c123gh6pm_startup_ccs.obj \
@@ -37,7 +37,7 @@ OBJS += \
 
 OBJS__QUOTED += \
 "LSM9DS1.obj" \
-"basic_functions.obj" \
+"board.obj" \
 "i2c.obj" \
 "main.obj" \
 "tm4c123gh6pm_startup_ccs.obj" \
@@ -45,7 +45,7 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "LSM9DS1.d" \
-"basic_functions.d" \
+"board.d" \
 "i2c.d" \
 "main.d" \
 "tm4c123gh6pm_startup_ccs.d" \
@@ -53,7 +53,7 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../LSM9DS1.c" \
-"../basic_functions.c" \
+"../board.c" \
 "../i2c.c" \
 "../main.c" \
 "../tm4c123gh6pm_startup_ccs.c" \

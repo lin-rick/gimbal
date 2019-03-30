@@ -3,17 +3,7 @@
  *
  * Written by Jim Lindblom @ SparkFun Electronics
  * Re-written in C by Richard Chen <ryc5@sfu.ca>
- *******************************************************************************
- *
- * Copyright Movit Technologies Inc., 2018
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF Movit Technologies Inc.
- *
- * ========================================
- */
+ *******************************************************************************/
 
 #ifndef __LSM9DS1_Types_H__
 #define __LSM9DS1_Types_H__
