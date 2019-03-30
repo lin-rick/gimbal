@@ -23,4 +23,3 @@ void UART_init(void){
 	UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT); //only enable RX and TX interrupts
 }
 
-

@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include "board.h"
 #include "LSM9DS1.h"
+#include "motor.h"
 
 /*******************************************************************************
 * Global Variables
@@ -41,6 +42,7 @@ int main(void)
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
 
 	UART_init();
+	Motor_init();
 	I2C_Init(I2C3_BASE, true);
 	LSM9DS1_init(&imu, &imu_config, &dev);
 
@@ -49,7 +51,8 @@ int main(void)
 	    LSM9DS1_step(&imu, &dev);
 		_printAccel(); // Print "A: ax, ay, az"
 		_printAttitude();
-		SysCtlDelay(1000000);
+		DriveMotor1(1, 0);
+		SysCtlDelay(1000000/50);
 	}
 }
 
