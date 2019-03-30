@@ -29,8 +29,8 @@ imu_config_t imu_config = {
 * Function Definitions
 *******************************************************************************/
 
-void printAccel();
-void printAttitude();
+void _printAccel();
+void _printAttitude();
 
 /*******************************************************************************
 * Main Loop
