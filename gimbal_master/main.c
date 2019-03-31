@@ -8,6 +8,7 @@
 #include "LSM9DS1.h"
 #include "motor.h"
 
+
 /*******************************************************************************
 * Global Variables
 *******************************************************************************/
@@ -36,13 +37,11 @@ void _printAttitude();
 /*******************************************************************************
 * Main Loop
 *******************************************************************************/
-extern int test;
 
 int main(void)
 {
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-    GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_6|GPIO_PIN_7);
+
 
 	UART_init();
 	Motor_init();
@@ -51,12 +50,13 @@ int main(void)
 	button_init();
 	while(1)
 	{
-//	    LSM9DS1_step(&imu, &dev);
-//		_printAccel(); // Print "A: ax, ay, az"
-//		_printAttitude();
-//		DriveMotor1(1, 0);
-//		SysCtlDelay(1000000/50);
-	    process_button();
+	    LSM9DS1_step(&imu, &dev);
+		_printAccel(); // Print "A: ax, ay, az"
+		_printAttitude();
+		Motor_step(&dev);
+	    Button_step(&dev);
+
+		SysCtlDelay(1000000/70);
 	}
 }
 

@@ -7,8 +7,10 @@
 /*******************************************************************************
 * Global variables
 *******************************************************************************/
-int test = 5;
-int button_pressed;
+int axis_lock = 0;
+int button_pressed = 0;
+int motor1_dir = 0;
+int motor2_dir = 0;
 
 /*******************************************************************************
 * Public functions
@@ -100,58 +102,80 @@ void buttonUp()
         GPIOIntRegister(GPIO_PORTC_BASE, buttonDown);   // Register our handler function for port F
         GPIOIntTypeSet(GPIO_PORTC_BASE, GPIO_PIN_4, GPIO_FALLING_EDGE);          // Configure PF4 for rising edge trigger
         GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_4);
-        //reset state
-        test = test+1;
+        button_pressed = 1;
     }
     if (GPIOIntStatus(GPIO_PORTC_BASE,false)&GPIO_PIN_5)
     {
         GPIOIntRegister(GPIO_PORTC_BASE, buttonDown);
         GPIOIntTypeSet(GPIO_PORTC_BASE, GPIO_PIN_5, GPIO_FALLING_EDGE);
         GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_5);
-        //    DriveMotor2(10,1);
-        test = test+1;
-        button_pressed = 1;
+        button_pressed = 2;
     }
     if (GPIOIntStatus(GPIO_PORTC_BASE,false)&GPIO_PIN_6)
     {
         GPIOIntRegister(GPIO_PORTC_BASE, buttonDown);
         GPIOIntTypeSet(GPIO_PORTC_BASE, GPIO_PIN_6, GPIO_FALLING_EDGE);
         GPIOIntClear(GPIO_PORTC_BASE, GPIO_PIN_6);
-        //    DriveMotor2(10,1);
-        test = test+1;
+        button_pressed = 3;
     }
     if (GPIOIntStatus(GPIO_PORTD_BASE,false)&GPIO_PIN_6)
     {
         GPIOIntRegister(GPIO_PORTD_BASE, buttonDown);
         GPIOIntTypeSet(GPIO_PORTD_BASE, GPIO_PIN_6, GPIO_FALLING_EDGE);
         GPIOIntClear(GPIO_PORTD_BASE, GPIO_PIN_6);
-        //    DriveMotor2(10,1);
-        test = test+1;
+        button_pressed = 4;
     }
     if (GPIOIntStatus(GPIO_PORTD_BASE,false)&GPIO_PIN_2)
     {
         GPIOIntRegister(GPIO_PORTD_BASE, buttonDown);
         GPIOIntTypeSet(GPIO_PORTD_BASE, GPIO_PIN_2, GPIO_FALLING_EDGE);
         GPIOIntClear(GPIO_PORTD_BASE, GPIO_PIN_2);
-
-        //    DriveMotor2(10,1);
-        test = test+1;
+        button_pressed = 5;
     }
     if (GPIOIntStatus(GPIO_PORTD_BASE,false)&GPIO_PIN_3)
     {
         GPIOIntRegister(GPIO_PORTD_BASE, buttonDown);
         GPIOIntTypeSet(GPIO_PORTD_BASE, GPIO_PIN_3, GPIO_FALLING_EDGE);
         GPIOIntClear(GPIO_PORTD_BASE, GPIO_PIN_3);
-        //    DriveMotor2(10,1);
-        test = test+1;
+        button_pressed = 6;
     }
 }
 
-void process_button(void)
+void Button_step(dev_t* dev)
 {
-    if (button_pressed == 1)
+    switch(button_pressed)
     {
-        test = 200;
+    case 0:
+        break;
+    case 1:
+        // Reset axis lock
+        dev->axis_lock = 0;
         button_pressed = 0;
+        break;
+    case 2:
+        // Lock axis for manual control
+        dev->axis_lock = 1;
+        button_pressed = 0;
+        break;
+    case 3:
+        // Pitch down
+        dev->motor1_dir = 1;
+        button_pressed = 0;
+        break;
+    case 4:
+        // Pitch up
+        dev->motor1_dir = 2;
+        button_pressed = 0;
+        break;
+    case 5:
+        // Roll left
+        dev->motor2_dir = 1;
+        button_pressed = 0;
+        break;
+    case 6:
+        // Roll_right
+        dev->motor2_dir = 2;
+        button_pressed = 0;
+        break;
     }
 }

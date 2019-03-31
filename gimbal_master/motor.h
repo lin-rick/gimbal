@@ -1,4 +1,12 @@
 /*******************************************************************************
+* Macros
+*******************************************************************************/
+#define STEP_SIZE   (10)
+#define CLOCKWISE   (2)
+#define C_CLOCKWISE (1)
+#define THRESHOLD   (10)
+
+/*******************************************************************************
 * Included headers
 *******************************************************************************/
 
@@ -9,6 +17,8 @@
 *******************************************************************************/
 void Motor_init();
 
-void DriveMotor1(int step,int dir);
+void Motor_step(dev_t* dev);
 
-void DriveMotor2(int step,int dir);
+void _driveMotor1(int step,int dir);
+
+void _driveMotor2(int step,int dir);

@@ -156,6 +156,9 @@ typedef struct dev_s {
 	dev_buffer_t buffer;
 	mdl_settings_t model;
 	statistics_t statistics;
+	int motor1_dir;
+	int motor2_dir;
+	int axis_lock;
 } dev_t;
 
 #endif
