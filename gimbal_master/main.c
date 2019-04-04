@@ -56,7 +56,7 @@ int main(void)
 		Motor_step(&dev);
 	    Button_step(&dev);
 
-		SysCtlDelay(1000000/70);
+		//SysCtlDelay(MOTOR_DELAY);
 	}
 }
 

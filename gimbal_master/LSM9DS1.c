@@ -23,6 +23,8 @@ const float PI = 3.14159265358979323846;
 *******************************************************************************/
 
 imu_error_t imu_error_flag;
+int head = 0;
+int window[3][WINDOW_SIZE];
 
 /*******************************************************************************
 * Public functions
@@ -200,12 +202,42 @@ uint16_t LSM9DS1_init(imu_t* imu, const imu_config_t* config, dev_t* dev)
 
 void LSM9DS1_step(imu_t* imu, dev_t* dev)
 {
+    int i;
+    int avg_ax = 0;
+    int avg_ay = 0;
+    int avg_az = 0;
     /* Guard against any IMU error */
     if ((dev->status.imu1_error == IMU_NO_ERR || dev->status.imu1_error == IMU_M_INIT_ERR)
         && (dev->status.imu2_error == IMU_NO_ERR || dev->status.imu2_error == IMU_M_INIT_ERR)) {
 
-        /* Read sensor data */
-        LSM9DS1_readAccel(imu);
+        for (i = 0; i < NUM_SAMPLES; i++) {
+            /* Read sensor data */
+            LSM9DS1_readAccel(imu);
+            avg_ax += imu->ax;
+            avg_ay += imu->ay;
+            avg_az += imu->az;
+        }
+        imu->ax = avg_ax/NUM_SAMPLES;
+        imu->ay = avg_ay/NUM_SAMPLES;
+        imu->az = avg_az/NUM_SAMPLES;
+//        LSM9DS1_readAccel(imu);
+//        if (head > WINDOW_SIZE - 1) {
+//            head = 0;
+//        }
+//        window[0][head] = imu->ax;
+//        window[1][head] = imu->ay;
+//        window[2][head] = imu->az;
+//        head++;
+//
+//        for (i = 0; i < WINDOW_SIZE; i++) {
+//            avg_ax += window[0][i];
+//            avg_ay += window[1][i];
+//            avg_az += window[2][i];
+//        }
+//        imu->ax = avg_ax/WINDOW_SIZE;
+//        imu->ay = avg_ay/WINDOW_SIZE;
+//        imu->az = avg_az/WINDOW_SIZE;
+
         LSM9DS1_calcAttitude(imu, dev);
         dev->status.imu1_error = imu_error_flag;
     }

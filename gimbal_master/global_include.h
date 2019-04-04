@@ -6,6 +6,7 @@
 #define GLOBAL_INCLUDE_H_
 
 #define TARGET_IS_BLIZZARD_RB1
+#define MOTOR_DELAY      (1000000/70)
 
 #include <stdint.h>
 #include <stdbool.h>

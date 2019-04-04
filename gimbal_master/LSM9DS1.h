@@ -25,6 +25,8 @@
 
 #define LSM9DS1_AG_ADDR(sa0)    ((sa0) == 0 ? 0x6A : 0x6B)
 #define LSM9DS1_M_ADDR(sa1)     ((sa1) == 0 ? 0x1C : 0x1E)
+#define NUM_SAMPLES             (60)
+#define WINDOW_SIZE             (20)
 
 /*******************************************************************************
 * Typedefs

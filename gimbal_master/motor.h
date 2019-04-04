@@ -1,7 +1,8 @@
 /*******************************************************************************
 * Macros
 *******************************************************************************/
-#define STEP_SIZE   (10)
+#define MANUAL_STEP_SIZE   (10)
+#define AUTO_STEP_SIZE     (1)
 #define CLOCKWISE   (2)
 #define C_CLOCKWISE (1)
 #define THRESHOLD   (10)
